@@ -8,6 +8,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.SideEffect
@@ -17,19 +18,30 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import kotlinx.coroutines.delay
 import pl.mwaszczuk.design.extensions.DesignDrawables
+import pl.mwaszczuk.design.theme.Orange
+import pl.mwaszczuk.navigation.Destination
 
 @Composable
-fun SplashScreenPage() {
+fun SplashScreen(
+    navController: NavController
+) {
     val systemUiController = rememberSystemUiController()
     val useDarkIcons = MaterialTheme.colors.isLight
-    val surfaceColor = MaterialTheme.colors.surface
+    val primaryColor = MaterialTheme.colors.primary
+    val secondaryColor = MaterialTheme.colors.secondary
 
     SideEffect {
-        systemUiController.setSystemBarsColor(
-            color = surfaceColor,
+        systemUiController.setStatusBarColor(
+            color = secondaryColor,
+            darkIcons = useDarkIcons
+        )
+        systemUiController.setNavigationBarColor(
+            color = primaryColor,
             darkIcons = useDarkIcons
         )
     }
@@ -48,13 +60,13 @@ fun SplashScreenPage() {
             )
         )
         delay(300L)
+        navController.navigate(Destination.Dashboard.route)
     }
 
     Scaffold(
         modifier = Modifier
             .fillMaxWidth()
             .fillMaxHeight()
-
     ) {
         Column(
             modifier = Modifier
@@ -62,8 +74,8 @@ fun SplashScreenPage() {
                 .background(
                     brush = Brush.verticalGradient(
                         colors = listOf(
-                            MaterialTheme.colors.primary,
-                            MaterialTheme.colors.secondary
+                            MaterialTheme.colors.secondary,
+                            MaterialTheme.colors.primary
                         )
                     )
                 ),
@@ -74,6 +86,14 @@ fun SplashScreenPage() {
                 painterResource(id = DesignDrawables.ic_app_icon),
                 contentDescription = null,
                 modifier = Modifier.scale(scale.value)
+            )
+            Text(
+                modifier = Modifier
+                    .align(Alignment.CenterHorizontally)
+                    .padding(top = 16.dp)
+                    .scale(scale.value),
+                text = "CryptoTracker",
+                style = MaterialTheme.typography.h1
             )
         }
     }

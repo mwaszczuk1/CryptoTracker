@@ -2,12 +2,26 @@ package pl.mwaszczuk.design.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import pl.mwaszczuk.design.R
+
+private val Lato = FontFamily(
+    Font(R.font.lato_bold, FontWeight.Bold),
+    Font(R.font.lato_regular, FontWeight.Normal)
+)
 
 // Set of Material typography styles to start with
 val Typography = Typography(
+    h1 = TextStyle(
+        fontFamily = Lato,
+        fontWeight = FontWeight.Bold,
+        fontSize = 36.sp,
+        color = Orange
+    ),
     body1 = TextStyle(
         fontFamily = FontFamily.Default,
         fontWeight = FontWeight.Normal,

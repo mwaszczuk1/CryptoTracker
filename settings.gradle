@@ -16,3 +16,4 @@ rootProject.name = "CryptoTracker"
 include ':app'
 include ':splash'
 include ':design'
+include ':navigation'

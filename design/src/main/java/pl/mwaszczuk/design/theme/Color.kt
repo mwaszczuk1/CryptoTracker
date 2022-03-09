@@ -2,9 +2,7 @@ package pl.mwaszczuk.design.theme
 
 import androidx.compose.ui.graphics.Color
 
-val Purple200 = Color(0xFFBB86FC)
-val Purple500 = Color(0xFF6200EE)
-val Purple700 = Color(0xFF3700B3)
-val Teal200 = Color(0xFF03DAC5)
-
+val BlankBlue = Color(0xFF406A80)
+val Teal = Color(0xFF88C5CC)
+val Orange = Color(0xFFCC584C)
 val White = Color(0xFFFFFFFF)
