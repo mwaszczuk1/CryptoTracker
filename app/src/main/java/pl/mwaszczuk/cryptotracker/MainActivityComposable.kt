@@ -13,6 +13,7 @@ import com.google.accompanist.navigation.animation.composable
 import com.google.accompanist.navigation.animation.navigation
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import pl.mwaszczuk.cryptotracker.defaults.NavigationDefaults
+import pl.mwaszczuk.dashboard.DashboardScreen
 import pl.mwaszczuk.navigation.Destination
 
 @OptIn(ExperimentalAnimationApi::class)
@@ -49,7 +50,11 @@ fun MainActivityComposable() {
             startDestination = Destination.Dashboard.route,
             route = Destination.DashboardNavGraph.route
         ) {
-            // TODO: add destinations to this navgraph
+            composable(
+                route = Destination.Dashboard.route
+            ) {
+                DashboardScreen()
+            }
         }
     }
 }

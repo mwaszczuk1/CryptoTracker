@@ -30,22 +30,6 @@ import pl.mwaszczuk.navigation.Destination
 fun SplashScreen(
     navController: NavController
 ) {
-    val systemUiController = rememberSystemUiController()
-    val useDarkIcons = MaterialTheme.colors.isLight
-    val primaryColor = MaterialTheme.colors.primary
-    val secondaryColor = MaterialTheme.colors.secondary
-
-    SideEffect {
-        systemUiController.setStatusBarColor(
-            color = secondaryColor,
-            darkIcons = useDarkIcons
-        )
-        systemUiController.setNavigationBarColor(
-            color = primaryColor,
-            darkIcons = useDarkIcons
-        )
-    }
-
     val scale = remember {
         Animatable(0f)
     }
