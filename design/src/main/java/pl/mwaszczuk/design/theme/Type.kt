@@ -1,4 +1,4 @@
-package pl.mwaszczuk.cryptotracker.ui.theme
+package pl.mwaszczuk.design.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle

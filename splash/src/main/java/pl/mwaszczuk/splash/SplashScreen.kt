@@ -17,21 +17,19 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.semantics.Role.Companion.Image
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import kotlinx.coroutines.delay
+import pl.mwaszczuk.design.extensions.DesignDrawables
 
 @Composable
 fun SplashScreenPage() {
     val systemUiController = rememberSystemUiController()
     val useDarkIcons = MaterialTheme.colors.isLight
+    val surfaceColor = MaterialTheme.colors.surface
 
     SideEffect {
-        systemUiController.setStatusBarColor(
-            color = Onahau,
-            darkIcons = useDarkIcons
-        )
-        systemUiController.setNavigationBarColor(
-            color = PinkLight,
+        systemUiController.setSystemBarsColor(
+            color = surfaceColor,
             darkIcons = useDarkIcons
         )
     }
@@ -64,8 +62,8 @@ fun SplashScreenPage() {
                 .background(
                     brush = Brush.verticalGradient(
                         colors = listOf(
-                            Onahau,
-                            PinkLight
+                            MaterialTheme.colors.primary,
+                            MaterialTheme.colors.secondary
                         )
                     )
                 ),
@@ -73,7 +71,7 @@ fun SplashScreenPage() {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Image(
-                painterResource(id = R.drawable.ic_logo),
+                painterResource(id = DesignDrawables.ic_app_icon),
                 contentDescription = null,
                 modifier = Modifier.scale(scale.value)
             )

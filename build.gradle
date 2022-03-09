@@ -1,8 +1,24 @@
 buildscript {
     ext {
-        compose_version = '1.1.0'
+        compose_version = '1.1.1'
+        accompanist_version = '0.23.0'
     }
-}// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:7.0.4'
+        classpath "com.google.dagger:hilt-android-gradle-plugin:2.40.5"
+    }
+}
+
 plugins {
     id 'com.android.application' version '7.1.0' apply false
     id 'com.android.library' version '7.1.0' apply false
