@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="Theme.CryptoTracker" parent="android:Theme.Material.Light.NoActionBar">
-                <item name="android:windowTranslucentStatus">true</item>
         <item name="android:windowBackground">@drawable/splash_gradient</item>
         <item name="android:statusBarColor">#88C5CC</item>
         <item name="android:navigationBarColor">#406A80</item>
