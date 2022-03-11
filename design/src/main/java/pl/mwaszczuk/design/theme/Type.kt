@@ -16,16 +16,33 @@ private val Lato = FontFamily(
 
 // Set of Material typography styles to start with
 val Typography = Typography(
+    defaultFontFamily = Lato,
     h1 = TextStyle(
         fontFamily = Lato,
         fontWeight = FontWeight.Bold,
         fontSize = 36.sp,
         color = Orange
     ),
-    body1 = TextStyle(
-        fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.Normal,
+    h2 = TextStyle(
+        fontFamily = Lato,
+        fontWeight = FontWeight.Bold,
         fontSize = 16.sp
+    ),
+    body1 = TextStyle(
+        fontFamily = Lato,
+        fontWeight = FontWeight.Normal,
+        fontSize = 12.sp
+    ),
+    body2 = TextStyle(
+        fontFamily = Lato,
+        fontWeight = FontWeight.Normal,
+        fontSize = 10.sp
+    ),
+    caption = TextStyle(
+        fontFamily = Lato,
+        fontWeight = FontWeight.Normal,
+        fontSize = 12.sp,
+        color = Gray
     )
     /* Other default text styles to override
     button = TextStyle(
