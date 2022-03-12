@@ -6,6 +6,7 @@ data class Cryptocurrency(
     val symbol: String,
     val iconUrl: String,
     val price: String,
+    val volume24h: String,
     val percentChange24h: String,
     val percentChange1h: String
 )

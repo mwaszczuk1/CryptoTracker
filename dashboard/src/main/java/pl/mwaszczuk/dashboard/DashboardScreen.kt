@@ -19,14 +19,19 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import pl.mwaszczuk.dashboard.components.CryptocurrencyItem
+import pl.mwaszczuk.dashboard.model.Cryptocurrency
 import pl.mwaszczuk.design.components.Button
 import pl.mwaszczuk.design.extensions.DesignDrawables
+import pl.mwaszczuk.domain.ViewState
+import pl.mwaszczuk.navigation.Destination
 
 @Composable
 fun DashboardScreen(
-    viewModel: DashboardViewModel = hiltViewModel()
+    viewModel: DashboardViewModel = hiltViewModel(),
+    navController: NavController
 ) {
     val systemUiController = rememberSystemUiController()
     val useDarkIcons = MaterialTheme.colors.isLight
@@ -41,7 +46,7 @@ fun DashboardScreen(
 
     val lazyListState = rememberLazyListState()
 
-    val state by viewModel.state.collectAsState()
+    val state by viewModel.state.collectAsState(ViewState.Loading)
 
     Box {
         LazyColumn(
@@ -60,17 +65,20 @@ fun DashboardScreen(
                     style = MaterialTheme.typography.h1.copy(fontSize = 28.sp)
                 )
             }
-            items(state) {
-                CryptocurrencyItem(item = it)
+            if (state is ViewState.Success) {
+                items((state as ViewState.Success<List<Cryptocurrency>>).data) {
+                    CryptocurrencyItem(item = it)
+                }
             }
+
         }
         Button(
             modifier = Modifier
                 .align(Alignment.TopEnd)
                 .padding(16.dp),
-            trailingIcon = DesignDrawables.ic_baseline_filter_list_24,
-            text = stringResource(R.string.filter),
-            onClick = { },
+            trailingIcon = DesignDrawables.ic_baseline_sort_24,
+            text = stringResource(R.string.sort_by),
+            onClick = { navController.navigate(Destination.SortByBottomSheet.route) },
             isTextVisible = lazyListState.firstVisibleItemIndex == 0
         )
     }

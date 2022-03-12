@@ -5,5 +5,5 @@ enum class Destination(val route: String) {
     Splash("SPLASH_DESTINATION"),
     DashboardNavGraph("DASHBOARD_NAV_GRAPH"),
     Dashboard("DASHBOARD_DESTINATION"),
-    FiltersBottomSheet("FILTERS_BOTTOM_SHEET_DESTINATION")
+    SortByBottomSheet("SORT_BY_BOTTOM_SHEET_DESTINATION")
 }

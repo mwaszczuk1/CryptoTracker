@@ -91,6 +91,7 @@ fun CryptocurrencyItemPreview() {
                 "BTC",
                 "",
                 "38715.15$",
+                "35353.23$",
                 "-1.21%",
                 "-0.17%"
             ),

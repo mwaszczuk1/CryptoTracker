@@ -13,6 +13,7 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/dashboard" />
             <option value="$PROJECT_DIR$/design" />
+            <option value="$PROJECT_DIR$/domain" />
             <option value="$PROJECT_DIR$/navigation" />
             <option value="$PROJECT_DIR$/splash" />
           </set>
