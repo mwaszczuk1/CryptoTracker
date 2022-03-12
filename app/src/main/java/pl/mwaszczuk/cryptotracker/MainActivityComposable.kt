@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.composable
@@ -23,6 +22,7 @@ import pl.mwaszczuk.cryptotracker.defaults.NavigationDefaults
 import pl.mwaszczuk.dashboard.DashboardScreen
 import pl.mwaszczuk.dashboard.sortby.SortByBottomSheet
 import pl.mwaszczuk.navigation.Destination
+import pl.mwaszczuk.navigation.SharedViewModel
 
 @OptIn(ExperimentalAnimationApi::class, ExperimentalMaterialNavigationApi::class)
 @Composable
@@ -72,12 +72,15 @@ fun MainActivityComposable() {
                 composable(
                     route = Destination.Dashboard.route
                 ) {
-                    DashboardScreen(navController = navController)
+                    DashboardScreen(
+                        viewModel = SharedViewModel(it, navController),
+                        navController = navController
+                    )
                 }
                 bottomSheet(
                     route = Destination.SortByBottomSheet.route
                 ) {
-                    SortByBottomSheet()
+                    SortByBottomSheet(SharedViewModel(it, navController))
                 }
             }
         }

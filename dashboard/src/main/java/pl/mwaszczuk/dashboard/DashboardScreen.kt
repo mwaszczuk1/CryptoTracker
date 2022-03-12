@@ -30,7 +30,7 @@ import pl.mwaszczuk.navigation.Destination
 
 @Composable
 fun DashboardScreen(
-    viewModel: DashboardViewModel = hiltViewModel(),
+    viewModel: DashboardViewModel,
     navController: NavController
 ) {
     val systemUiController = rememberSystemUiController()
