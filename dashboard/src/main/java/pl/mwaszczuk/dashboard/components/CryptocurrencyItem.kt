@@ -20,10 +20,11 @@ import pl.mwaszczuk.design.theme.CryptoTrackerTheme
 
 @Composable
 fun CryptocurrencyItem(
+    modifier: Modifier = Modifier,
     item: Cryptocurrency
 ) {
     Card(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = modifier.fillMaxWidth(),
         elevation = CardDefaults.ELEVATION,
         backgroundColor = MaterialTheme.colors.surface,
         shape = RoundedCornerShape(CardDefaults.CORNER)

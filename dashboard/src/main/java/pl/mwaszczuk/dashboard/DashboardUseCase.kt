@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import pl.mwaszczuk.dashboard.model.Cryptocurrency
 import pl.mwaszczuk.dashboard.model.CryptocurrencyMapper
-import pl.mwaszczuk.dashboard.sortby.CryptoSortOption
+import pl.mwaszczuk.dashboard.model.CryptoSortOption
 import pl.mwaszczuk.domain.CryptocurrencyData
 import pl.mwaszczuk.domain.ViewState
 import javax.inject.Inject

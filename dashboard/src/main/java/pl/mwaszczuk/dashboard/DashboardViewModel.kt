@@ -2,12 +2,10 @@ package pl.mwaszczuk.dashboard
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.lifecycle.viewmodel.compose.viewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
-import pl.mwaszczuk.dashboard.model.Cryptocurrency
-import pl.mwaszczuk.dashboard.sortby.CryptoSortOption
+import pl.mwaszczuk.dashboard.model.CryptoSortOption
 import javax.inject.Inject
 
 @HiltViewModel

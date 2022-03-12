@@ -28,6 +28,11 @@ val Typography = Typography(
         fontWeight = FontWeight.Bold,
         fontSize = 16.sp
     ),
+    h3 = TextStyle(
+        fontFamily = Lato,
+        fontWeight = FontWeight.Bold,
+        fontSize = 14.sp
+    ),
     body1 = TextStyle(
         fontFamily = Lato,
         fontWeight = FontWeight.Normal,

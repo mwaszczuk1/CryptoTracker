@@ -1,5 +1,6 @@
 package pl.mwaszczuk.dashboard
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -13,12 +14,9 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import pl.mwaszczuk.dashboard.components.CryptocurrencyItem
@@ -28,6 +26,7 @@ import pl.mwaszczuk.design.extensions.DesignDrawables
 import pl.mwaszczuk.domain.ViewState
 import pl.mwaszczuk.navigation.Destination
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun DashboardScreen(
     viewModel: DashboardViewModel,
@@ -66,8 +65,15 @@ fun DashboardScreen(
                 )
             }
             if (state is ViewState.Success) {
-                items((state as ViewState.Success<List<Cryptocurrency>>).data) {
-                    CryptocurrencyItem(item = it)
+                items(
+                    items = (state as ViewState.Success<List<Cryptocurrency>>).data,
+                    key = { it.id }
+                ) {
+                    CryptocurrencyItem(
+                        modifier = Modifier
+                            .animateItemPlacement(),
+                        item = it
+                    )
                 }
             }
 
