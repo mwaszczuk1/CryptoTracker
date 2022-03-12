@@ -1,5 +1,6 @@
 package pl.mwaszczuk.dashboard.components
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -12,8 +13,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import coil.compose.rememberImagePainter
 import pl.mwaszczuk.dashboard.model.Cryptocurrency
 import pl.mwaszczuk.design.defaults.CardDefaults
+import pl.mwaszczuk.design.theme.CryptoTrackerTheme
 
 @Composable
 fun CryptocurrencyItem(
@@ -29,11 +32,13 @@ fun CryptocurrencyItem(
             modifier = Modifier.padding(16.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Box(
+            Image(
                 modifier = Modifier
                     .requiredSize(36.dp)
                     .clip(RoundedCornerShape(24.dp))
-                    .background(MaterialTheme.colors.primary)
+                    .background(MaterialTheme.colors.primary),
+                painter = rememberImagePainter(item.iconUrl),
+                contentDescription = "cryptoIcon"
             )
 
             Column(
@@ -57,17 +62,17 @@ fun CryptocurrencyItem(
                 Text(
                     modifier = Modifier
                         .padding(bottom = 8.dp),
-                    text = "333",
+                    text = item.price,
                     style = MaterialTheme.typography.h2
                 )
                 Text(
                     modifier = Modifier
                         .padding(bottom = 2.dp),
-                    text = "daily",
+                    text = item.percentChange24h,
                     style = MaterialTheme.typography.body2
                 )
                 Text(
-                    text = "weekly",
+                    text = item.percentChange1h,
                     style = MaterialTheme.typography.body2
                 )
             }
@@ -78,7 +83,17 @@ fun CryptocurrencyItem(
 @Preview
 @Composable
 fun CryptocurrencyItemPreview() {
-    CryptocurrencyItem(
-        item = Cryptocurrency("id", "Bitcoin", "BTC")
-    )
+    CryptoTrackerTheme {
+        CryptocurrencyItem(
+            item = Cryptocurrency(
+                "1",
+                "Bitcoin",
+                "BTC",
+                "",
+                "38715.15$",
+                "-1.21%",
+                "-0.17%"
+            ),
+        )
+    }
 }
