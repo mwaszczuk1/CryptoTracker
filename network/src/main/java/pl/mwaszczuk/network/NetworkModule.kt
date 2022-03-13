@@ -5,9 +5,11 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ActivityRetainedComponent
+import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType
 import okhttp3.OkHttpClient
+import pl.mwaszczuk.network.api.CryptoTickerApi
 import retrofit2.Converter
 import retrofit2.Retrofit
 import java.util.concurrent.TimeUnit
@@ -26,6 +28,7 @@ object NetworkModule {
             .build()
     }
 
+    @OptIn(ExperimentalSerializationApi::class)
     @Provides
     fun provideConverterFactory(): Converter.Factory {
         val contentType = MediaType.get("application/json")
@@ -45,4 +48,8 @@ object NetworkModule {
             .client(client)
             .build()
     }
+
+    @Provides
+    fun provideCryptoTickerApi(retrofit: Retrofit): CryptoTickerApi =
+        retrofit.create(CryptoTickerApi::class.java)
 }

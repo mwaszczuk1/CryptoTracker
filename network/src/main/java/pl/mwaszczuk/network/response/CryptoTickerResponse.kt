@@ -9,14 +9,14 @@ data class CryptoTickerResponse(
     val id: String,
     @SerialName("name")
     val name: String,
-    @SerialName("percent_change_1h")
-    val percentChange1h: String,
-    @SerialName("percent_change_24h")
-    val percentChange24h: String,
-    @SerialName("price_usd")
-    val priceUsd: String,
     @SerialName("symbol")
     val symbol: String,
+    @SerialName("percent_change_1h")
+    val percentChange1h: Double,
+    @SerialName("percent_change_24h")
+    val percentChange24h: Double,
+    @SerialName("price_usd")
+    val priceUsd: Double,
     @SerialName("volume24")
     val volume24: Double,
 )
