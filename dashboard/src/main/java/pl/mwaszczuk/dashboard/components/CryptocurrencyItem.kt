@@ -64,7 +64,8 @@ fun CryptocurrencyItem(
                     )
                     Icon(
                         modifier = Modifier
-                            .padding(start = 8.dp),
+                            .padding(start = 8.dp)
+                            .align(Alignment.CenterVertically),
                         painter = painterResource(item.trend.iconRes),
                         contentDescription = "trendIcon",
                         tint = item.trend.iconColor

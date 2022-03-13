@@ -109,12 +109,14 @@ fun DashboardLayout(
 @Composable
 fun ErrorLayout() {
     Box(
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center
     ) {
         Column {
             Icon(
                 modifier = Modifier
-                    .requiredSize(48.dp),
+                    .requiredSize(48.dp)
+                    .align(Alignment.CenterHorizontally),
                 painter = painterResource(DesignDrawables.ic_baseline_error_24),
                 contentDescription = "errorIcon",
                 tint = Red
