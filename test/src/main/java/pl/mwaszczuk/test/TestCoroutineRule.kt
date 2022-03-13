@@ -1,4 +1,4 @@
-package pl.mwaszczuk.dashboard
+package pl.mwaszczuk.test
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -7,8 +7,7 @@ import org.junit.rules.TestWatcher
 import org.junit.runner.Description
 import org.junit.runners.model.Statement
 
-@OptIn(ExperimentalCoroutinesApi::class)
-class MainCoroutineRule :
+class TestCoroutineRule :
     TestWatcher() {
     val dispatcher: TestCoroutineDispatcher = TestCoroutineDispatcher()
     val testCoroutineScope = TestCoroutineScope(dispatcher)
