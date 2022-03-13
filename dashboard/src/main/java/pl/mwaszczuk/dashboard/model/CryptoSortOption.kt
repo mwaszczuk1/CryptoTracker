@@ -1,6 +1,6 @@
 package pl.mwaszczuk.dashboard.model
 
-import pl.mwaszczuk.domain.CryptocurrencyData
+import pl.mwaszczuk.domain.model.CryptocurrencyData
 
 sealed class CryptoSortOption(
     val name: String

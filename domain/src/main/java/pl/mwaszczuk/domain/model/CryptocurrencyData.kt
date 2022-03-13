@@ -1,6 +1,6 @@
-package pl.mwaszczuk.domain
+package pl.mwaszczuk.domain.model
 
-import androidx.compose.ui.text.toLowerCase
+import pl.mwaszczuk.domain.BuildConfig
 import pl.mwaszczuk.network.response.CryptoTickerResponse
 import java.util.*
 

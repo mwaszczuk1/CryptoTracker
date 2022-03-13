@@ -9,3 +9,6 @@ val White = Color(0xFFFFFFFF)
 val GrayLight = Color(0xFFF7F7F7)
 val Gray = Color(0xFFD1D0D0)
 val GrayDark = Color(0xFFA2A2A2)
+
+val Red = Color(0xFFDD1010)
+val Green = Color(0xFF20AC11)

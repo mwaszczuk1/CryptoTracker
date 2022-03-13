@@ -1,6 +1,6 @@
 package pl.mwaszczuk.domain.repository
 
-import pl.mwaszczuk.domain.CryptocurrencyData
+import pl.mwaszczuk.domain.model.CryptocurrencyData
 import pl.mwaszczuk.domain.safeApiCall
 import pl.mwaszczuk.domain.unwrap
 import pl.mwaszczuk.network.api.CryptoTickerApi
