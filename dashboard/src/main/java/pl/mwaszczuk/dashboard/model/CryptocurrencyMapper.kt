@@ -10,22 +10,22 @@ class CryptocurrencyMapper {
         data: List<CryptocurrencyData>,
         previousData: List<Cryptocurrency>?
     ) =
-        data.map { data ->
-            val previousRecord = previousData?.firstOrNull { it.id == data.id }
+        data.map { currencyData ->
+            val previousRecord = previousData?.firstOrNull { it.id == currencyData.id }
             val priceDiff = if (previousRecord == null) {
                 null
             } else {
-                previousRecord.price.amount - data.price
+                previousRecord.price.amount - currencyData.price
             }
             Cryptocurrency(
-                data.id,
-                data.name,
-                data.symbol,
-                data.iconUrl,
-                Currency(R.string.currency_dollar_value, data.price),
-                Currency(R.string.currency_dollar_value, data.volume24h),
-                PercentChange(data.percentChange24h.toString(), data.percentChange24h >= 0),
-                PercentChange(data.percentChange1h.toString(), data.percentChange1h >= 0),
+                currencyData.id,
+                currencyData.name,
+                currencyData.symbol,
+                currencyData.iconUrl,
+                Currency(R.string.currency_dollar_value, currencyData.price),
+                Currency(R.string.currency_dollar_value, currencyData.volume24h),
+                PercentChange(currencyData.percentChange24h.toString(), currencyData.percentChange24h >= 0),
+                PercentChange(currencyData.percentChange1h.toString(), currencyData.percentChange1h >= 0),
                 when {
                     priceDiff == null -> Trend.Flat
                     priceDiff > 0 -> Trend.Up
