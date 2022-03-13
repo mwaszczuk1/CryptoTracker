@@ -5,18 +5,21 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
+import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
 import pl.mwaszczuk.dashboard.R
 import pl.mwaszczuk.dashboard.model.Cryptocurrency
+import pl.mwaszczuk.dashboard.model.Trend
 import pl.mwaszczuk.design.defaults.CardDefaults
 import pl.mwaszczuk.design.theme.CryptoTrackerTheme
 import pl.mwaszczuk.design.theme.Green
@@ -53,10 +56,19 @@ fun CryptocurrencyItem(
                     .weight(1f)
                     .padding(start = 8.dp)
             ) {
-                Text(
-                    text = item.name,
-                    style = MaterialTheme.typography.h2
-                )
+                Row {
+                    Text(
+                        text = item.name,
+                        style = MaterialTheme.typography.h2
+                    )
+                    Icon(
+                        modifier = Modifier
+                            .padding(start = 8.dp),
+                        painter = painterResource(item.trend.iconRes),
+                        contentDescription = "trendIcon",
+                        tint = item.trend.iconColor
+                    )
+                }
                 Text(
                     modifier = Modifier
                         .padding(top = 8.dp),
@@ -114,7 +126,8 @@ fun CryptocurrencyItemPreview() {
                 Currency(R.string.currency_dollar_value, 38715.15),
                 Currency(R.string.currency_dollar_value, 35353.23),
                 PercentChange("-1.21%", false),
-                PercentChange("-0.17%", false)
+                PercentChange("-0.17%", false),
+                Trend.Flat
             ),
         )
     }

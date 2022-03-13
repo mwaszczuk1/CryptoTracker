@@ -11,5 +11,6 @@ data class Cryptocurrency(
     val price: Currency,
     val volume24h: Currency,
     val percentChange24h: PercentChange,
-    val percentChange1h: PercentChange
+    val percentChange1h: PercentChange,
+    val trend: Trend
 )

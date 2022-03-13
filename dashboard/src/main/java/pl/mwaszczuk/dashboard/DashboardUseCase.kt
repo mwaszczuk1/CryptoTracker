@@ -18,6 +18,8 @@ class DashboardUseCase @Inject constructor(
     private val mapper: CryptocurrencyMapper
 ) {
 
+    private var currentData: List<Cryptocurrency>? = null
+
     private val sortingOptions = listOf(
         CryptoSortOption.Name(),
         CryptoSortOption.Volume24(),
@@ -33,17 +35,11 @@ class DashboardUseCase @Inject constructor(
     private val cryptoDataRefresh = MutableSharedFlow<ViewState<List<Cryptocurrency>>>(replay = 1)
     private val cryptoDataTicker = flow {
         while (true) {
-            val data = repository.getCryptoTickers().mapAsViewState {
-                mapper.map(
-                    currentSortingOption.value.second.sort(
-                        it
-                    )
-                )
-            }
-            emit(data)
+            emit(getCryptoData())
             delay(CRYPTO_PINGING_DELAY_MILLIS)
         }
     }
+
     @OptIn(ExperimentalCoroutinesApi::class)
     val cryptoDataFlow = channelFlow {
         launch {
@@ -51,20 +47,29 @@ class DashboardUseCase @Inject constructor(
         }
         cryptoDataRefresh.collect { send(it) }
     }
+        .onEach {
+            (it as? ViewState.Success)?.data?.let { data ->
+                currentData = data
+            }
+        }
         .conflate()
         .flowOn(Dispatchers.IO)
 
     suspend fun refresh() {
         cryptoDataRefresh.emit(
-            repository.getCryptoTickers().mapAsViewState {
-                mapper.map(
-                    currentSortingOption.value.second.sort(
-                        it
-                    )
-                )
-            }
+            getCryptoData()
         )
     }
+
+    private suspend fun getCryptoData(): ViewState<List<Cryptocurrency>> =
+        repository.getCryptoTickers().mapAsViewState {
+            mapper.map(
+                data = currentSortingOption.value.second.sort(
+                    it
+                ),
+                previousData = currentData
+            )
+        }
 
     companion object {
         private const val CRYPTO_PINGING_DELAY_MILLIS = 30000L
