@@ -1,6 +1,5 @@
 package pl.mwaszczuk.dashboard
 
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
@@ -8,6 +7,7 @@ import kotlinx.coroutines.launch
 import pl.mwaszczuk.dashboard.model.Cryptocurrency
 import pl.mwaszczuk.dashboard.model.CryptocurrencyMapper
 import pl.mwaszczuk.dashboard.model.CryptoSortOption
+import pl.mwaszczuk.domain.Dispatchers
 import pl.mwaszczuk.domain.ViewState
 import pl.mwaszczuk.domain.mapAsViewState
 import pl.mwaszczuk.domain.repository.CryptoTickerRepository
@@ -15,7 +15,8 @@ import javax.inject.Inject
 
 class DashboardUseCase @Inject constructor(
     private val repository: CryptoTickerRepository,
-    private val mapper: CryptocurrencyMapper
+    private val mapper: CryptocurrencyMapper,
+    private val dispatchers: Dispatchers
 ) {
 
     private var currentData: List<Cryptocurrency>? = null
@@ -53,7 +54,7 @@ class DashboardUseCase @Inject constructor(
             }
         }
         .conflate()
-        .flowOn(Dispatchers.IO)
+        .flowOn(dispatchers.io)
 
     suspend fun refresh() {
         cryptoDataRefresh.emit(
