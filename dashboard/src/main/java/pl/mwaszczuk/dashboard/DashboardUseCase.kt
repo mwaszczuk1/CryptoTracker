@@ -34,7 +34,11 @@ class DashboardUseCase @Inject constructor(
     private val cryptoDataTicker = flow {
         while (true) {
             val data = repository.getCryptoTickers().mapAsViewState {
-                mapper.map(it)
+                mapper.map(
+                    currentSortingOption.value.second.sort(
+                        it
+                    )
+                )
             }
             emit(data)
             delay(CRYPTO_PINGING_DELAY_MILLIS)
@@ -53,7 +57,11 @@ class DashboardUseCase @Inject constructor(
     suspend fun refresh() {
         cryptoDataRefresh.emit(
             repository.getCryptoTickers().mapAsViewState {
-                mapper.map(it)
+                mapper.map(
+                    currentSortingOption.value.second.sort(
+                        it
+                    )
+                )
             }
         )
     }

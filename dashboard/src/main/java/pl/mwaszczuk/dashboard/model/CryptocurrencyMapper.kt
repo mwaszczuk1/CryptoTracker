@@ -9,7 +9,7 @@ class CryptocurrencyMapper {
                 it.id,
                 it.name,
                 it.symbol,
-                "https://cryptoicons.org/api/icon/eth/200",
+                it.iconUrl,
                 it.price.toString(),
                 it.volume24h.toString(),
                 it.percentChange24h.toString(),
