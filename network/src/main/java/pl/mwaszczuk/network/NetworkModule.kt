@@ -8,7 +8,9 @@ import dagger.hilt.android.components.ActivityRetainedComponent
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType
+import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import pl.mwaszczuk.network.api.CryptoTickerApi
 import retrofit2.Converter
 import retrofit2.Retrofit
@@ -20,9 +22,9 @@ import javax.inject.Singleton
 object NetworkModule {
 
     @Provides
-    @Singleton
     fun provideOkHttpClient(): OkHttpClient {
         return OkHttpClient.Builder()
+            .addInterceptor(HttpLoggingInterceptor())
             .readTimeout(20, TimeUnit.SECONDS)
             .writeTimeout(20, TimeUnit.SECONDS)
             .build()
@@ -31,12 +33,14 @@ object NetworkModule {
     @OptIn(ExperimentalSerializationApi::class)
     @Provides
     fun provideConverterFactory(): Converter.Factory {
-        val contentType = MediaType.get("application/json")
-        return Json.asConverterFactory(contentType)
+        val contentType = "application/json".toMediaType()
+        val json = Json {
+            ignoreUnknownKeys = true
+        }
+        return json.asConverterFactory(contentType)
     }
 
     @Provides
-    @Singleton
     fun provideRetrofit(
         converterFactory: Converter.Factory,
         client: OkHttpClient
