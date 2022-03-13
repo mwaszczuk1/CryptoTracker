@@ -15,7 +15,7 @@ class CryptocurrencyMapper {
             val priceDiff = if (previousRecord == null) {
                 null
             } else {
-                previousRecord.price.amount - currencyData.price
+                currencyData.price - previousRecord.price.amount
             }
             Cryptocurrency(
                 currencyData.id,
