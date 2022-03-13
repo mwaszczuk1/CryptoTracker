@@ -21,6 +21,7 @@ import pl.mwaszczuk.dashboard.R
 import pl.mwaszczuk.dashboard.model.Cryptocurrency
 import pl.mwaszczuk.dashboard.model.Trend
 import pl.mwaszczuk.design.defaults.CardDefaults
+import pl.mwaszczuk.design.extensions.loadingPlaceholder
 import pl.mwaszczuk.design.theme.CryptoTrackerTheme
 import pl.mwaszczuk.design.theme.Green
 import pl.mwaszczuk.design.theme.Red
@@ -111,6 +112,21 @@ fun CryptocurrencyItem(
             }
         }
     }
+}
+
+@Composable
+fun CryptocurrencyItemLoading(
+    modifier: Modifier = Modifier
+) {
+    Box(
+        modifier = modifier
+            .fillMaxWidth()
+            .requiredHeight(80.dp)
+            .clip(RoundedCornerShape(CardDefaults.CORNER))
+            .loadingPlaceholder(
+                isVisible = true
+            )
+    )
 }
 
 @Preview

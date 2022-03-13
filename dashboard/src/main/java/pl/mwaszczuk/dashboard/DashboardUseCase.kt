@@ -16,7 +16,7 @@ import javax.inject.Inject
 class DashboardUseCase @Inject constructor(
     private val repository: CryptoTickerRepository,
     private val mapper: CryptocurrencyMapper,
-    private val dispatchers: Dispatchers
+    dispatchers: Dispatchers
 ) {
 
     private var currentData: List<Cryptocurrency>? = null

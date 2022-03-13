@@ -13,5 +13,5 @@ inline fun <reified VM : ViewModel> SharedViewModel(
     navController: NavController
 ): VM {
     val rootEntry = remember { navController.getBackStackEntry(entry.destination.parent?.id!!) }
-    return hiltViewModel<VM>(rootEntry)
+    return hiltViewModel(rootEntry)
 }

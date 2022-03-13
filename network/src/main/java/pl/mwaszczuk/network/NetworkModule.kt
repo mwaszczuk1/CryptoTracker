@@ -34,7 +34,7 @@ object NetworkModule {
             .build()
     }
 
-    @OptIn(ExperimentalSerializationApi::class)
+    @ExperimentalSerializationApi
     @Provides
     fun provideConverterFactory(): Converter.Factory {
         val contentType = "application/json".toMediaType()
