@@ -4,6 +4,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import pl.mwaszczuk.dashboard.model.Cryptocurrency
 import pl.mwaszczuk.dashboard.model.CryptocurrencyMapper
 import pl.mwaszczuk.dashboard.model.CryptoSortOption
@@ -16,7 +17,7 @@ import javax.inject.Inject
 class DashboardUseCase @Inject constructor(
     private val repository: CryptoTickerRepository,
     private val mapper: CryptocurrencyMapper,
-    dispatchers: Dispatchers
+    private val dispatchers: Dispatchers
 ) {
 
     private var currentData: List<Cryptocurrency>? = null
@@ -63,13 +64,15 @@ class DashboardUseCase @Inject constructor(
     }
 
     private suspend fun getCryptoData(): ViewState<List<Cryptocurrency>> =
-        repository.getCryptoTickers().mapAsViewState {
-            mapper.map(
-                data = currentSortingOption.value.second.sort(
-                    it
-                ),
-                previousData = currentData
-            )
+        withContext(dispatchers.io) {
+            repository.getCryptoTickers().mapAsViewState {
+                mapper.map(
+                    data = currentSortingOption.value.second.sort(
+                        it
+                    ),
+                    previousData = currentData
+                )
+            }
         }
 
     companion object {
