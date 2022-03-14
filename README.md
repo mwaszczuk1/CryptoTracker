@@ -1,7 +1,7 @@
 # CryptoTracker
 
 ## Description
-CryptoTracker is an app to track crypto prices, price changes and their 24h volumes and a trend.
+CryptoTracker is an app to track crypto prices, price changes, their 24h volumes and a trend.
 
 ## Features
 1. Display cryptocurrencies in a list
