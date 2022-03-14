@@ -46,7 +46,7 @@ fun CryptocurrencyItem(
         ) {
             Image(
                 modifier = Modifier
-                    .requiredSize(36.dp)
+                    .requiredSize(40.dp)
                     .clip(RoundedCornerShape(24.dp))
                     .background(MaterialTheme.colors.primary),
                 painter = rememberImagePainter(item.iconUrl),
@@ -56,7 +56,7 @@ fun CryptocurrencyItem(
             Column(
                 modifier = Modifier
                     .weight(1f)
-                    .padding(start = 8.dp)
+                    .padding(start = 12.dp)
             ) {
                 Row {
                     Text(
