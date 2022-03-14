@@ -27,6 +27,7 @@ import pl.mwaszczuk.design.theme.Green
 import pl.mwaszczuk.design.theme.Red
 import pl.mwaszczuk.domain.model.Currency
 import pl.mwaszczuk.domain.model.PercentChange
+import java.math.BigDecimal
 
 @Composable
 fun CryptocurrencyItem(
@@ -82,10 +83,16 @@ fun CryptocurrencyItem(
             Column {
                 Text(
                     modifier = Modifier
+                        .align(Alignment.End),
+                    text = stringResource(item.price.currencyStringRes, item.price.amount.toPlainString()),
+                    style = MaterialTheme.typography.h2
+                )
+                Text(
+                    modifier = Modifier
                         .align(Alignment.End)
                         .padding(bottom = 8.dp),
-                    text = stringResource(item.price.currencyStringRes, item.price.amount.toString()),
-                    style = MaterialTheme.typography.h2
+                    text = stringResource(R.string.volume_24h, item.volume24h),
+                    style = MaterialTheme.typography.body2
                 )
                 Text(
                     modifier = Modifier
@@ -140,8 +147,8 @@ fun CryptocurrencyItemPreview() {
                 "Bitcoin",
                 "BTC",
                 "",
-                Currency(R.string.currency_dollar_value, 38715.15),
-                Currency(R.string.currency_dollar_value, 35353.23),
+                Currency(R.string.currency_dollar_value, BigDecimal("38715.15")),
+                "Volume 24h: 8.62M",
                 PercentChange("-1.21%", false),
                 PercentChange("-0.17%", false),
                 Trend.Flat

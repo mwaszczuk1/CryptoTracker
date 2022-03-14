@@ -14,11 +14,11 @@ sealed class CryptoSortOption(
 
     class Volume24: CryptoSortOption("Volume 24h") {
         override fun sort(cryptoCurrencies: List<CryptocurrencyData>) =
-            cryptoCurrencies.sortedBy { it.volume24h }
+            cryptoCurrencies.sortedByDescending { it.volume24h }
     }
 
     class PercentChange24: CryptoSortOption("Percent change 24h") {
         override fun sort(cryptoCurrencies: List<CryptocurrencyData>) =
-            cryptoCurrencies.sortedBy { it.percentChange24h }
+            cryptoCurrencies.sortedByDescending { it.percentChange24h }
     }
 }

@@ -53,6 +53,7 @@ dependencies {
     implementation project(path: ':design')
     implementation project(path: ':navigation')
     implementation project(path: ':domain')
+    implementation project(path: ':formatters')
     testImplementation project(path: ':test')
 
     // Compose core

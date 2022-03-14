@@ -1,6 +1,7 @@
 <resources>
     <string name="sort_by">Sort by</string>
     <string name="currency_dollar_value">%1$s$</string>
+    <string name="volume_24h">Volume 24h: %1$s</string>
     <string name="hourly_percentage_value">Hour: %1$s\%%</string>
     <string name="daily_percentage_value">Day: %1$s\%%</string>
 
