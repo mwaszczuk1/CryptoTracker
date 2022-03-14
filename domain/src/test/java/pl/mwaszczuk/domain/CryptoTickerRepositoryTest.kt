@@ -18,7 +18,6 @@ class CryptoTickerRepositoryTest {
     private val tickerApi: CryptoTickerApi = mock()
     private val repository = CryptoTickerRepository(tickerApi)
 
-    @OptIn(ExperimentalCoroutinesApi::class)
     @Test
     fun `test success api response`() = runBlockingTest {
         whenever(tickerApi.getCryptoTickers(any())) doReturn Response.success(
